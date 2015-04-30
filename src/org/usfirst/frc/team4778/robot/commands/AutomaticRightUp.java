@@ -7,14 +7,13 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class AutomaticDownLift extends Command {
+public class AutomaticRightUp extends Command {
 	
 	boolean finished = false;
 
-    public AutomaticDownLift() {
+    public AutomaticRightUp() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.leftLift);
     	requires(Robot.rightLift);
     }
 
@@ -25,8 +24,7 @@ public class AutomaticDownLift extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	finished = false;
-    	Robot.leftLift.goDown();
-    	Robot.rightLift.goDown();
+    	Robot.rightLift.goUp();
     	finished = true;
     }
 

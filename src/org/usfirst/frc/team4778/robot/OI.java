@@ -2,7 +2,7 @@ package org.usfirst.frc.team4778.robot;
 
 
 import org.usfirst.frc.team4778.robot.commands.AutomaticDownLift;
-import org.usfirst.frc.team4778.robot.commands.AutomaticUpLift;
+import org.usfirst.frc.team4778.robot.commands.ParallelUpLift;
 import org.usfirst.frc.team4778.robot.commands.ResetEncoder;
 import org.usfirst.frc.team4778.robot.commands.ToggleGrips;
 import org.usfirst.frc.team4778.robot.commands.ToggleKicker;
@@ -54,8 +54,8 @@ public class OI {
 	Button leftTrigger = new JoystickButton(leftJoystick, 1);
 	public OI() {
 		rightTrigger.whenPressed(new ToggleGrips());
-		button2r.whenPressed(new AutomaticUpLift());
-		button3r.whenPressed(new AutomaticDownLift());
+		button3r.whenPressed(new ParallelUpLift());
+		button2r.whenPressed(new AutomaticDownLift());
 		button2l.whenPressed(new ResetEncoder());
 		leftTrigger.whenPressed(new ToggleKicker());
 	}

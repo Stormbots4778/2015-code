@@ -21,7 +21,9 @@ public class RightLift extends PIDSubsystem {
 	public RightLift() {
 		super ("Right Lift", 0.75,0.0,0.0);
 		getPIDController().setOutputRange(-1, 1);
-		getPIDController().disable();
+	    getPIDController().setAbsoluteTolerance(0.05);
+		getPIDController().setSetpoint(0.16);
+		getPIDController().enable();
 	}
     
     // Put methods for controlling this subsystem
@@ -37,7 +39,7 @@ public class RightLift extends PIDSubsystem {
     }
     
     protected void usePIDOutput(double output) {
-    	//rightLiftMotor.pidWrite(output);
+    	rightLiftMotor.pidWrite(output);
     }
     
     public void goUp() {
@@ -70,7 +72,7 @@ public class RightLift extends PIDSubsystem {
     }
     
     public double getDownSetpoint(double time) {
-    	double setpoint = 15.9501998-((133.66218)/(Math.pow(15.963983,time)+7.4585183387476));
+    	double setpoint = ((129.02)/((Math.pow(56.1074,time)+7.18604)))+0.15803;
     	return setpoint;
     }
 }

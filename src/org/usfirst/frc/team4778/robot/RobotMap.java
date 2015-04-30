@@ -39,9 +39,6 @@ public class RobotMap {
 	public static Relay kickerIn = new Relay(1);
 	
 	public RobotMap() {
-		leftEncoder.setDistancePerPulse(0.01309); //Encodon conversion ratio. Should actually be 0.02086214
-		rightEncoder.setDistancePerPulse(0.01309);
-		leftEncoder.setReverseDirection(true);
-		leftEncoder.setSamplesToAverage(4);
+
 	}
 }

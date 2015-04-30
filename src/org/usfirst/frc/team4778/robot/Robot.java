@@ -62,6 +62,11 @@ public class Robot extends IterativeRobot {
         kickerOut.set(Relay.Value.kForward);
         kickerIn.set(Relay.Value.kOff);
         
+		RobotMap.leftEncoder.setDistancePerPulse(0.01309); //Encodon conversion ratio. Should actually be 0.02086214
+		RobotMap.rightEncoder.setDistancePerPulse(0.01309);
+		RobotMap.leftEncoder.setReverseDirection(true);
+		RobotMap.leftEncoder.setSamplesToAverage(4);
+        
     }
 	
 	public void disabledPeriodic() {
