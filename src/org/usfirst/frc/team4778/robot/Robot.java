@@ -1,10 +1,12 @@
 
 package org.usfirst.frc.team4778.robot;
 
+import org.usfirst.frc.team4778.robot.subsystems.Kicker;
 import org.usfirst.frc.team4778.robot.subsystems.LeftLift;
 import org.usfirst.frc.team4778.robot.subsystems.RightLift;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.RobotDrive.MotorType;
 import edu.wpi.first.wpilibj.Solenoid;
@@ -24,12 +26,15 @@ public class Robot extends IterativeRobot {
 	//public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static final LeftLift leftLift = new LeftLift();
 	public static final RightLift rightLift = new RightLift();
+	public static final Kicker kicker = new Kicker();
 	
 	Solenoid leftGripOut = RobotMap.leftGripOut;
 	Solenoid leftGripIn = RobotMap.leftGripIn;
 	Solenoid rightGripOut = RobotMap.rightGripOut;
 	Solenoid rightGripIn = RobotMap.rightGripIn;
 	RobotDrive drive;
+	Relay kickerOut = RobotMap.kickerOut;
+	Relay kickerIn = RobotMap.kickerIn;
 	
 	public static OI oi;
 
@@ -54,6 +59,8 @@ public class Robot extends IterativeRobot {
         drive = new RobotDrive(RobotMap.leftDrive, RobotMap.rightDrive);
         drive.setInvertedMotor(MotorType.kRearLeft, true);
         drive.setInvertedMotor(MotorType.kRearRight, true);
+        kickerOut.set(Relay.Value.kForward);
+        kickerIn.set(Relay.Value.kOff);
         
     }
 	

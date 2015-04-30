@@ -9,6 +9,8 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class AutomaticUpLift extends Command {
+	
+	boolean finished = false;
 
     public AutomaticUpLift() {
         // Use requires() here to declare subsystem dependencies
@@ -23,14 +25,15 @@ public class AutomaticUpLift extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	finished = false;
     	Robot.leftLift.goUp();
-    	Robot.rightLift.goUp();
-    	
+    	//Robot.rightLift.goUp();
+    	finished = true;
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return finished;
     }
 
     // Called once after isFinished returns true

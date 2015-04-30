@@ -20,7 +20,8 @@ public class RightLift extends PIDSubsystem {
 	
 	public RightLift() {
 		super ("Right Lift", 0.75,0.0,0.0);
-		getPIDController().setOutputRange(-1, 1);;
+		getPIDController().setOutputRange(-1, 1);
+		getPIDController().disable();
 	}
     
     // Put methods for controlling this subsystem
@@ -36,7 +37,7 @@ public class RightLift extends PIDSubsystem {
     }
     
     protected void usePIDOutput(double output) {
-    	rightLiftMotor.pidWrite(output);
+    	//rightLiftMotor.pidWrite(output);
     }
     
     public void goUp() {
