@@ -1,7 +1,9 @@
 package org.usfirst.frc.team4778.robot;
 
 
-import org.usfirst.frc.team4778.robot.commands.AutomaticDownLift;
+import org.usfirst.frc.team4778.robot.commands.PIDDownLift;
+import org.usfirst.frc.team4778.robot.commands.PIDUpLift;
+import org.usfirst.frc.team4778.robot.commands.ParallelDownLift;
 import org.usfirst.frc.team4778.robot.commands.ParallelUpLift;
 import org.usfirst.frc.team4778.robot.commands.ResetEncoder;
 import org.usfirst.frc.team4778.robot.commands.ToggleGrips;
@@ -50,14 +52,18 @@ public class OI {
 	Button rightTrigger = new JoystickButton(rightJoystick, 1);
 	Button button2r = new JoystickButton(rightJoystick, 2);
 	Button button3r = new JoystickButton(rightJoystick, 3);
-	Button button2l = new JoystickButton(leftJoystick, 2);
+	Button button4l = new JoystickButton(leftJoystick, 4);
 	Button leftTrigger = new JoystickButton(leftJoystick, 1);
+	Button button3l = new JoystickButton(leftJoystick, 3);
+	Button button2l = new JoystickButton(leftJoystick, 2);
 	public OI() {
 		rightTrigger.whenPressed(new ToggleGrips());
 		button3r.whenPressed(new ParallelUpLift());
-		button2r.whenPressed(new AutomaticDownLift());
-		button2l.whenPressed(new ResetEncoder());
+		button2r.whenPressed(new ParallelDownLift());
+		button4l.whenPressed(new ResetEncoder());
 		leftTrigger.whenPressed(new ToggleKicker());
+		button3l.whenPressed(new ParallelUpLift());
+		button2l.whenPressed(new ParallelDownLift());
 	}
 	
 

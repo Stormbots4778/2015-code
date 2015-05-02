@@ -1,21 +1,22 @@
 package org.usfirst.frc.team4778.robot.commands;
 
 import org.usfirst.frc.team4778.robot.Robot;
+import org.usfirst.frc.team4778.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class AutomaticLeftUp extends Command {
+public class AutomaticGripUp extends Command {
 	
 	boolean finished = false;
-	boolean manual;
 
-    public AutomaticLeftUp() {
+    public AutomaticGripUp() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.leftLift);
+    	requires(Robot.rightLift);
     }
 
     // Called just before this Command runs the first time
@@ -25,7 +26,10 @@ public class AutomaticLeftUp extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	finished = false;
-    		Robot.leftLift.goUp();
+    	RobotMap.leftGripOut.set(true);
+    	RobotMap.leftGripIn.set(false);
+    	RobotMap.rightGripOut.set(true);
+    	RobotMap.rightGripIn.set(false);
     	finished = true;
     }
 
@@ -41,6 +45,5 @@ public class AutomaticLeftUp extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	System.out.println("Interrupted");
     }
 }

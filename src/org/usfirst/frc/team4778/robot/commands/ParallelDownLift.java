@@ -7,12 +7,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class ParallelUpLift extends CommandGroup {
-	
-	public boolean manual;
-	public static long timer;
+public class ParallelDownLift extends CommandGroup {
     
-    public  ParallelUpLift() {
+    public  ParallelDownLift() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -32,15 +29,7 @@ public class ParallelUpLift extends CommandGroup {
     	
     	requires(Robot.leftLift);
     	requires(Robot.rightLift);
-    	addSequential(new AutomaticGripUp());
-    	try {
-			Thread.sleep(250);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	timer = System.nanoTime();
-    	addParallel(new AutomaticLeftUp(timer));
-    	addSequential(new AutomaticRightUp(timer));
+    	addParallel(new AutomaticLeftDown());
+    	addSequential(new AutomaticRightDown());
     }
 }

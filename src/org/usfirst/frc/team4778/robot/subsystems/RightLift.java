@@ -1,6 +1,7 @@
 package org.usfirst.frc.team4778.robot.subsystems;
 
 import org.usfirst.frc.team4778.robot.RobotMap;
+import org.usfirst.frc.team4778.robot.commands.ParallelUpLift;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Timer;
@@ -20,7 +21,7 @@ public class RightLift extends PIDSubsystem {
 	
 	public RightLift() {
 		super ("Right Lift", 0.75,0.0,0.0);
-		getPIDController().setOutputRange(-1, 1);
+		getPIDController().setOutputRange(-0.9, 0.9);
 	    getPIDController().setAbsoluteTolerance(0.05);
 		getPIDController().setSetpoint(0.16);
 		getPIDController().enable();
@@ -43,27 +44,35 @@ public class RightLift extends PIDSubsystem {
     }
     
     public void goUp() {
-    	double timer = 0;
+    	System.out.println("Right Going Up");
+    	System.out.flush();
+    	//double timer = System.nanoTime();
     	double setpoint;
-    	for(int i=0; i<40; i++) {
-    		timer = i*0.05;
-    		setpoint = getUpSetpoint(timer);
+    	while(((System.nanoTime()-ParallelUpLift.timer)/1.0e9) < 200) {
+    		//timer = i*0.05;
+    		setpoint = getUpSetpoint((System.nanoTime()-ParallelUpLift.timer)/1.0e9);
     		getPIDController().setSetpoint(setpoint);
-    		getPIDController().enable();
-    		Timer.delay(0.05);
+    		try {
+				Thread.sleep(20);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				Thread.currentThread().interrupt();
+			}
     	}
+    	//getPIDController().setSetpoint(14.00);
     }
     
     public void goDown() {
-    	double timer = 0;
-    	double setpoint;
-    	for(int i=0; i<40; i++) {
-    		timer = i*0.05;
-    		setpoint = getDownSetpoint(timer);
-    		getPIDController().setSetpoint(setpoint);
-    		getPIDController().enable();
-    		Timer.delay(0.05);
-    	}
+    	//double timer = 0;
+    	//double setpoint;
+    	//for(int i=0; i<40; i++) {
+    	//	timer = i*0.05;
+    	//	setpoint = getDownSetpoint(timer);
+    	//	getPIDController().setSetpoint(setpoint);
+    	//	getPIDController().enable();
+    	//	Timer.delay(0.05);
+    	//}
+    	getPIDController().setSetpoint(0.16);
     }
     
     public double getUpSetpoint(double time) {
@@ -75,5 +84,6 @@ public class RightLift extends PIDSubsystem {
     	double setpoint = ((129.02)/((Math.pow(56.1074,time)+7.18604)))+0.15803;
     	return setpoint;
     }
+    
 }
 

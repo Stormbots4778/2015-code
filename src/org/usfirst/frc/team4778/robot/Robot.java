@@ -1,6 +1,7 @@
 
 package org.usfirst.frc.team4778.robot;
 
+import org.usfirst.frc.team4778.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team4778.robot.subsystems.Kicker;
 import org.usfirst.frc.team4778.robot.subsystems.LeftLift;
 import org.usfirst.frc.team4778.robot.subsystems.RightLift;
@@ -27,12 +28,13 @@ public class Robot extends IterativeRobot {
 	public static final LeftLift leftLift = new LeftLift();
 	public static final RightLift rightLift = new RightLift();
 	public static final Kicker kicker = new Kicker();
+	//public static final Drivetrain drivetrain = new Drivetrain();
 	
 	Solenoid leftGripOut = RobotMap.leftGripOut;
 	Solenoid leftGripIn = RobotMap.leftGripIn;
 	Solenoid rightGripOut = RobotMap.rightGripOut;
 	Solenoid rightGripIn = RobotMap.rightGripIn;
-	RobotDrive drive;
+	public RobotDrive drive;
 	Relay kickerOut = RobotMap.kickerOut;
 	Relay kickerIn = RobotMap.kickerIn;
 	
