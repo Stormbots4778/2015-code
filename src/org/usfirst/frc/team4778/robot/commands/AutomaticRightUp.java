@@ -10,11 +10,13 @@ import edu.wpi.first.wpilibj.command.Command;
 public class AutomaticRightUp extends Command {
 	
 	boolean finished = false;
+	long timer;
 
-    public AutomaticRightUp() {
+    public AutomaticRightUp(long time) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.rightLift);
+    	timer = time;
     }
 
     // Called just before this Command runs the first time
@@ -24,7 +26,7 @@ public class AutomaticRightUp extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	finished = false;
-    	Robot.rightLift.goUp();
+    	Robot.rightLift.goUp(timer);
     	finished = true;
     }
 

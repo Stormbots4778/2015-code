@@ -1,9 +1,10 @@
 package org.usfirst.frc.team4778.robot.subsystems;
 
 import org.usfirst.frc.team4778.robot.RobotMap;
-import org.usfirst.frc.team4778.robot.commands.ParallelUpLift;
+import org.usfirst.frc.team4778.robot.commands.FollowRight;
 
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 
@@ -29,6 +30,7 @@ public class LeftLift extends PIDSubsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
+    	//setDefaultCommand(new FollowRight());
     }
     
     protected double returnPIDInput() {
@@ -39,23 +41,32 @@ public class LeftLift extends PIDSubsystem {
     	liftMotor.pidWrite(output*-1);
     }
     
-    public void goUp() {
+    public void goUp(long timer) {
     	System.out.println("Left Going Up");
     	System.out.flush();
     	//double timer = System.nanoTime();
-    	double setpoint;
-    	while(((System.nanoTime()-ParallelUpLift.timer)/1.0e9) < 200) {
+    	//double setpoint;
+    	//while(((System.nanoTime()-timer)/1.0e9) < 6) {
     		//timer = i*0.05;
-    		setpoint = getUpSetpoint((System.nanoTime()-ParallelUpLift.timer)/1.0e9);
-    		getPIDController().setSetpoint(setpoint);
-    		try {
-				Thread.sleep(20);
-			} catch (InterruptedException e) {
+    	//	setpoint = getUpSetpoint((System.nanoTime()-ParallelUpLift.timer)/1.0e9);
+    	//	getPIDController().setSetpoint(setpoint);
+    	//	try {
+		//		Thread.sleep(20);
+		//	} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
-				Thread.currentThread().interrupt();
-			}
-    	}
+		//		Thread.currentThread().interrupt();
+		//	}
+    	//}
     	//getPIDController().setSetpoint(14.00);
+    	
+    	double timer2 = 0;
+    	double setpoint;
+    	for (int i=0; i<40; i++) {
+    		timer2 = i*0.05;
+    		setpoint = getUpSetpoint(timer2);
+    		getPIDController().setSetpoint(setpoint);
+    		Timer.delay(0.05);
+    	}
     }
     
     public void goDown() {
@@ -82,6 +93,10 @@ public class LeftLift extends PIDSubsystem {
     
     public void follow() {
     	//getPIDController().setSetpoint(RobotMap.rightEncoder.getDistance());
+    }
+    
+    public void followRight() {
+    	getPIDController().setSetpoint(RobotMap.rightEncoder.getDistance());
     }
     
 }

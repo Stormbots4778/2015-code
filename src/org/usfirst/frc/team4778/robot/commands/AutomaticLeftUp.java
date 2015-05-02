@@ -11,8 +11,9 @@ public class AutomaticLeftUp extends Command {
 	
 	boolean finished = false;
 	boolean manual;
+	long timer;
 
-    public AutomaticLeftUp() {
+    public AutomaticLeftUp(long time) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.leftLift);
@@ -25,7 +26,7 @@ public class AutomaticLeftUp extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	finished = false;
-    		Robot.leftLift.goUp();
+    		Robot.leftLift.goUp(timer);
     	finished = true;
     }
 

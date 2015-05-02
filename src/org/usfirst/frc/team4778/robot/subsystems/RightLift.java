@@ -43,23 +43,31 @@ public class RightLift extends PIDSubsystem {
     	rightLiftMotor.pidWrite(output);
     }
     
-    public void goUp() {
+    public void goUp(long timer) {
     	System.out.println("Right Going Up");
     	System.out.flush();
     	//double timer = System.nanoTime();
-    	double setpoint;
-    	while(((System.nanoTime()-ParallelUpLift.timer)/1.0e9) < 200) {
+    	//double setpoint;
+    	//while(((System.nanoTime()-timer)/1.0e9) < 6) {
     		//timer = i*0.05;
-    		setpoint = getUpSetpoint((System.nanoTime()-ParallelUpLift.timer)/1.0e9);
-    		getPIDController().setSetpoint(setpoint);
-    		try {
-				Thread.sleep(20);
-			} catch (InterruptedException e) {
+    	//	setpoint = getUpSetpoint((System.nanoTime()-ParallelUpLift.timer)/1.0e9);
+    	//	getPIDController().setSetpoint(setpoint);
+    	//	try {
+		//		Thread.sleep(20);
+		//	} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
-				Thread.currentThread().interrupt();
-			}
+		//		Thread.currentThread().interrupt();
+		//	}
+    	//}
+    	//getPIDController().setSetpoint(16.00);
+    	double timer2 = 0;
+    	double setpoint;
+    	for (int i=0; i<40; i++) {
+    		timer2 = i*0.05;
+    		setpoint = getUpSetpoint(timer2);
+    		getPIDController().setSetpoint(setpoint);
+    		Timer.delay(0.05);
     	}
-    	//getPIDController().setSetpoint(14.00);
     }
     
     public void goDown() {

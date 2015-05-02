@@ -2,6 +2,7 @@ package org.usfirst.frc.team4778.robot.commands;
 
 import org.usfirst.frc.team4778.robot.Robot;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
@@ -33,14 +34,10 @@ public class ParallelUpLift extends CommandGroup {
     	requires(Robot.leftLift);
     	requires(Robot.rightLift);
     	addSequential(new AutomaticGripUp());
-    	try {
-			Thread.sleep(250);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    	Timer.delay(0.25);
     	timer = System.nanoTime();
-    	addParallel(new AutomaticLeftUp(timer));
-    	addSequential(new AutomaticRightUp(timer));
+    	//addParallel(new AutomaticLeftUp(timer));
+    	//addSequential(new AutomaticRightUp(timer));
+    	addSequential(new PIDUpLift(timer));
     }
 }

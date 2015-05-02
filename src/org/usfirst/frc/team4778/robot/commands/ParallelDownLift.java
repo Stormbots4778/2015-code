@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  *
  */
 public class ParallelDownLift extends CommandGroup {
+	long timer;
     
     public  ParallelDownLift() {
         // Add Commands here:
@@ -29,7 +30,9 @@ public class ParallelDownLift extends CommandGroup {
     	
     	requires(Robot.leftLift);
     	requires(Robot.rightLift);
-    	addParallel(new AutomaticLeftDown());
-    	addSequential(new AutomaticRightDown());
+    	timer = System.nanoTime();
+    	//addParallel(new AutomaticLeftDown());
+    	//addSequential(new AutomaticRightDown());
+    	addSequential(new PIDDownLift(timer));
     }
 }
