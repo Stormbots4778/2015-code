@@ -1,5 +1,6 @@
 package org.usfirst.frc.team4778.robot;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.Solenoid;
@@ -37,6 +38,8 @@ public class RobotMap {
 	
 	public static Relay kickerOut = new Relay(0);
 	public static Relay kickerIn = new Relay(1);
+	
+	public static DigitalInput toteStop = new DigitalInput(9);
 	
 	public RobotMap() {
 

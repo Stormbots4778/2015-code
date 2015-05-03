@@ -33,6 +33,6 @@ public class ParallelDownLift extends CommandGroup {
     	timer = System.nanoTime();
     	//addParallel(new AutomaticLeftDown());
     	//addSequential(new AutomaticRightDown());
-    	addSequential(new PIDDownLift(timer));
+    	addSequential(new PIDDownLift());
     }
 }

@@ -1,22 +1,21 @@
 package org.usfirst.frc.team4778.robot.commands;
 
 import org.usfirst.frc.team4778.robot.Robot;
+import org.usfirst.frc.team4778.robot.RobotMap;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class PIDUpLift extends Command {
+public class DriveForwardToButton extends Command {
 	
 	boolean finished = false;
 
-    public PIDUpLift() {
+    public DriveForwardToButton() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.leftLift);
-    	requires(Robot.rightLift);
+    	requires(Robot.drivetrain);
     }
 
     // Called just before this Command runs the first time
@@ -26,13 +25,10 @@ public class PIDUpLift extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	finished = false;
-    	for (int i=0; i<35; i++) {
-    		double currenttime = i*0.05;
-    		double setpoint = 16.2619-((85.7281)/(Math.pow(24.289,currenttime)+4.32489));
-    		Robot.leftLift.getPIDController().setSetpoint(setpoint);
-    		Robot.rightLift.getPIDController().setSetpoint(setpoint);
-    		Timer.delay(0.05);
+    	while (RobotMap.toteStop.get() == false) {
+    		Robot.drive.arcadeDrive(1.00, 0);
     	}
+    	Robot.drive.arcadeDrive(0, 0);
     	finished = true;
     }
 
@@ -48,6 +44,5 @@ public class PIDUpLift extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	end();
     }
 }

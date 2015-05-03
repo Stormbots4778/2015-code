@@ -38,6 +38,6 @@ public class ParallelUpLift extends CommandGroup {
     	timer = System.nanoTime();
     	//addParallel(new AutomaticLeftUp(timer));
     	//addSequential(new AutomaticRightUp(timer));
-    	addSequential(new PIDUpLift(timer));
+    	addSequential(new PIDUpLift());
     }
 }

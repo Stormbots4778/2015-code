@@ -1,6 +1,7 @@
 
 package org.usfirst.frc.team4778.robot;
 
+import org.usfirst.frc.team4778.robot.commands.Autonomous;
 import org.usfirst.frc.team4778.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team4778.robot.subsystems.Kicker;
 import org.usfirst.frc.team4778.robot.subsystems.LeftLift;
@@ -28,13 +29,13 @@ public class Robot extends IterativeRobot {
 	public static final LeftLift leftLift = new LeftLift();
 	public static final RightLift rightLift = new RightLift();
 	public static final Kicker kicker = new Kicker();
-	//public static final Drivetrain drivetrain = new Drivetrain();
+	public static final Drivetrain drivetrain = new Drivetrain();
 	
 	Solenoid leftGripOut = RobotMap.leftGripOut;
 	Solenoid leftGripIn = RobotMap.leftGripIn;
 	Solenoid rightGripOut = RobotMap.rightGripOut;
 	Solenoid rightGripIn = RobotMap.rightGripIn;
-	public RobotDrive drive;
+	public static RobotDrive drive = new RobotDrive(RobotMap.leftDrive, RobotMap.rightDrive);
 	Relay kickerOut = RobotMap.kickerOut;
 	Relay kickerIn = RobotMap.kickerIn;
 	
@@ -58,7 +59,8 @@ public class Robot extends IterativeRobot {
         RobotMap.leftEncoder.reset();
         RobotMap.rightEncoder.reset();
         
-        drive = new RobotDrive(RobotMap.leftDrive, RobotMap.rightDrive);
+        //drive = new RobotDrive(RobotMap.leftDrive, RobotMap.rightDrive);
+        
         drive.setInvertedMotor(MotorType.kRearLeft, true);
         drive.setInvertedMotor(MotorType.kRearRight, true);
         kickerOut.set(Relay.Value.kForward);
@@ -68,6 +70,8 @@ public class Robot extends IterativeRobot {
 		RobotMap.rightEncoder.setDistancePerPulse(0.01309);
 		RobotMap.leftEncoder.setReverseDirection(true);
 		RobotMap.leftEncoder.setSamplesToAverage(4);
+		
+		autonomousCommand = new Autonomous();
         
     }
 	
@@ -108,7 +112,7 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-        drive.tankDrive(oi.leftJoystick, oi.rightJoystick);
+        //drive.tankDrive(oi.leftJoystick, oi.rightJoystick);
     }
     
     /**

@@ -21,7 +21,7 @@ public class RightLift extends PIDSubsystem {
 	
 	public RightLift() {
 		super ("Right Lift", 0.75,0.0,0.0);
-		getPIDController().setOutputRange(-0.9, 0.9);
+		getPIDController().setOutputRange(-1, 1);
 	    getPIDController().setAbsoluteTolerance(0.05);
 		getPIDController().setSetpoint(0.16);
 		getPIDController().enable();

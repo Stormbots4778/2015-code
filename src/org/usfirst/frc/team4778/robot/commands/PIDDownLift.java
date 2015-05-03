@@ -11,14 +11,12 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class PIDDownLift extends Command {
 	boolean finished;
-	long time;
 
-    public PIDDownLift(long timer) {
+    public PIDDownLift() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.leftLift);
     	requires(Robot.rightLift);
-    	time = timer;
     	
     }
 
@@ -29,9 +27,9 @@ public class PIDDownLift extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	finished = false;
-    	for (int i=0; i<40; i++) {
+    	for (int i=0; i<20; i++) {
     		double currenttime = i*0.05;
-    		double setpoint = ((129.02)/((Math.pow(56.1074,currenttime)+7.18604)))+0.15803;
+    		double setpoint = ((24.4495)/((Math.pow(6.2743,currenttime)+0.251242)))-3.58679;
     		Robot.leftLift.getPIDController().setSetpoint(setpoint);
     		Robot.rightLift.getPIDController().setSetpoint(setpoint);
     		if (i == 13) {
@@ -57,5 +55,6 @@ public class PIDDownLift extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	end();
     }
 }
