@@ -58,11 +58,14 @@ public class Robot extends IterativeRobot {
         rightGripOut.set(false);
         RobotMap.leftEncoder.reset();
         RobotMap.rightEncoder.reset();
+        RobotMap.gyro.reset();
         
         //drive = new RobotDrive(RobotMap.leftDrive, RobotMap.rightDrive);
         
         drive.setInvertedMotor(MotorType.kRearLeft, true);
         drive.setInvertedMotor(MotorType.kRearRight, true);
+        drive.setSafetyEnabled(false);
+        
         kickerOut.set(Relay.Value.kForward);
         kickerIn.set(Relay.Value.kOff);
         
@@ -113,6 +116,7 @@ public class Robot extends IterativeRobot {
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
         //drive.tankDrive(oi.leftJoystick, oi.rightJoystick);
+        Robot.drivetrain.getPIDController().disable();
     }
     
     /**

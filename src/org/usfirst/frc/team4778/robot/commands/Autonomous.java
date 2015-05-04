@@ -1,7 +1,9 @@
 package org.usfirst.frc.team4778.robot.commands;
 
 import org.usfirst.frc.team4778.robot.Robot;
+import org.usfirst.frc.team4778.robot.RobotMap;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
@@ -30,18 +32,25 @@ public class Autonomous extends CommandGroup {
     	requires(Robot.rightLift);
     	requires(Robot.drivetrain);
     	
+    	RobotMap.gyro.reset();
+    	RobotMap.leftEncoder.reset();
+    	RobotMap.rightEncoder.reset();
+    	
     	for (int i=0; i<2; i++) {
-    	//	addParallel(new PIDUpLift()); //Bring lifts up
-    	//	addSequential(new TurnToAngle(-20)); //Knock can out of the way
-    	//	addSequential(new TurnToAngle(0)); //Return to straight path
-    	//	addSequential(new DriveForwardToButton()); //Drive forward to next tote
-    	//	addSequential(new PIDDownLift()); //Bring lifts down for next tote
+    		addSequential(new AutomaticGripUp());
+    		Timer.delay(0.15);
+    		addParallel(new PIDUpLift()); //Bring lifts up
+    		Timer.delay(0.2);
+    		addSequential(new TurnToAngle(-20)); //Knock can out of the way
+    		addSequential(new TurnToAngle(0)); //Return to straight path
+    		addSequential(new DriveForwardToButton()); //Drive forward to next tote
+    		addSequential(new PIDDownLift()); //Bring lifts down for next tote
     	}
-    	//	addSequential(new PIDUpLift()); //Pick up the stack of 3 totes
-    	//	addSequential(new BackUp()); //Back away from last container
-    	//	addSequential(new TurnToAngle(-70)); //Turn in preparation for scoring
-    	//	addSequential(new ForwardToScore()); //Go forward into auto zone
-    	//	addSequential(new PIDDownLift()); //Set down the stack
+    		addSequential(new PIDUpLift()); //Pick up the stack of 3 totes
+    		addSequential(new BackUp()); //Back away from last container
+    		addSequential(new TurnToAngle(-70)); //Turn in preparation for scoring
+    		addSequential(new ForwardToScore()); //Go forward into auto zone
+    		addSequential(new PIDDownLift()); //Set down the stack
     	
     	//addSequential(new DriveForwardToButton());
     }
