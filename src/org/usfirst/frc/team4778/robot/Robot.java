@@ -7,6 +7,7 @@ import org.usfirst.frc.team4778.robot.subsystems.Kicker;
 import org.usfirst.frc.team4778.robot.subsystems.LeftLift;
 import org.usfirst.frc.team4778.robot.subsystems.RightLift;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.RobotDrive;
@@ -39,6 +40,11 @@ public class Robot extends IterativeRobot {
 	Relay kickerOut = RobotMap.kickerOut;
 	Relay kickerIn = RobotMap.kickerIn;
 	
+	public static Encoder leftEncoder = RobotMap.leftEncoderPrimary;
+	public static Encoder rightEncoder = RobotMap.rightEncoderPrimary;
+	
+	public static boolean moving = false;
+	
 	public static OI oi;
 
     Command autonomousCommand;
@@ -56,8 +62,8 @@ public class Robot extends IterativeRobot {
         leftGripOut.set(false);
         rightGripIn.set(true);
         rightGripOut.set(false);
-        RobotMap.leftEncoder.reset();
-        RobotMap.rightEncoder.reset();
+        RobotMap.leftEncoderPrimary.reset();
+        RobotMap.rightEncoderPrimary.reset();
         RobotMap.gyro.reset();
         
         //drive = new RobotDrive(RobotMap.leftDrive, RobotMap.rightDrive);
@@ -69,10 +75,10 @@ public class Robot extends IterativeRobot {
         kickerOut.set(Relay.Value.kForward);
         kickerIn.set(Relay.Value.kOff);
         
-		RobotMap.leftEncoder.setDistancePerPulse(0.01309); //Encodon conversion ratio. Should actually be 0.02086214
-		RobotMap.rightEncoder.setDistancePerPulse(0.01309);
-		RobotMap.leftEncoder.setReverseDirection(true);
-		RobotMap.leftEncoder.setSamplesToAverage(4);
+		RobotMap.leftEncoderPrimary.setDistancePerPulse(0.01309); //Encodon conversion ratio. Should actually be 0.02086214
+		RobotMap.rightEncoderPrimary.setDistancePerPulse(0.01309);
+		RobotMap.leftEncoderPrimary.setReverseDirection(true);
+		RobotMap.leftEncoderPrimary.setSamplesToAverage(4);
 		
 		autonomousCommand = new Autonomous();
         
@@ -116,7 +122,13 @@ public class Robot extends IterativeRobot {
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
         //drive.tankDrive(oi.leftJoystick, oi.rightJoystick);
-        Robot.drivetrain.getPIDController().disable();
+        
+        if ((moving && RobotMap.leftEncoderPrimary.getStopped())) {
+        	leftEncoder = RobotMap.leftEncoderBackup;
+        }
+        if ((moving && RobotMap.rightEncoderPrimary.getStopped())) {
+        	rightEncoder = RobotMap.rightEncoderBackup;
+        }
     }
     
     /**

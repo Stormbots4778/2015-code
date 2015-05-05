@@ -3,6 +3,7 @@ package org.usfirst.frc.team4778.robot.commands;
 import org.usfirst.frc.team4778.robot.Robot;
 import org.usfirst.frc.team4778.robot.RobotMap;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -25,10 +26,15 @@ public class DriveForwardToButton extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	finished = false;
-    	while (RobotMap.toteStop.get() == false) {
-    		Robot.drive.arcadeDrive(1.00, 0);
+    	double i=0;
+    	while (RobotMap.toteStop.get() == true || i > 60) {
+    		Robot.drivetrain.getPIDController().setSetpoint(2.00);
+    		Robot.drivetrain.enable();
+    		Timer.delay(0.05);
+    		i=i+0.05;
     	}
-    	Robot.drive.arcadeDrive(0, 0);
+    	Robot.drive.arcadeDrive(0.0, 0.0);
+    	
     	finished = true;
     }
 
@@ -39,6 +45,7 @@ public class DriveForwardToButton extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.drivetrain.getPIDController().disable();
     }
 
     // Called when another command which requires one or more of the same

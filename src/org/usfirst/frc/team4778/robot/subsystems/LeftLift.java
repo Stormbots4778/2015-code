@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.command.PIDSubsystem;
 public class LeftLift extends PIDSubsystem {
 	
 	Victor liftMotor = RobotMap.leftLiftMotor;
-	Encoder leftEncoder = RobotMap.leftEncoder;
+	Encoder leftEncoder = RobotMap.leftEncoderPrimary;
 	
 	public LeftLift() {
 		super ("Left Lift", 0.75,0.0,0.0);
@@ -91,12 +91,8 @@ public class LeftLift extends PIDSubsystem {
     	return setpoint;
     }
     
-    public void follow() {
-    	//getPIDController().setSetpoint(RobotMap.rightEncoder.getDistance());
-    }
-    
     public void followRight() {
-    	getPIDController().setSetpoint(RobotMap.rightEncoder.getDistance());
+    	getPIDController().setSetpoint(RobotMap.rightEncoderPrimary.getDistance());
     }
     
 }

@@ -17,7 +17,7 @@ public class RightLift extends PIDSubsystem {
     // here. Call these from Commands.
 
 	Victor rightLiftMotor = RobotMap.rightLiftMotor;
-	Encoder rightEncoder = RobotMap.rightEncoder;
+	Encoder rightEncoder = RobotMap.rightEncoderPrimary;
 	
 	public RightLift() {
 		super ("Right Lift", 0.75,0.0,0.0);

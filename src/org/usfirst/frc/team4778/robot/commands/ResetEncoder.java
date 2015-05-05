@@ -23,8 +23,8 @@ public class ResetEncoder extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	finished = false;
-    	RobotMap.leftEncoder.reset();
-    	RobotMap.rightEncoder.reset();
+    	RobotMap.leftEncoderPrimary.reset();
+    	RobotMap.rightEncoderPrimary.reset();
     	finished = true;
     }
 

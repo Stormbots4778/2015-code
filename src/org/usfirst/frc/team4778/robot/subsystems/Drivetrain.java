@@ -15,9 +15,9 @@ public class Drivetrain extends PIDSubsystem {
     // here. Call these from Commands.
 
     public Drivetrain() {
-    	super("Drive", 0.4, 0.0, 0.0);
-    	getPIDController().setOutputRange(-0.8,0.8);
-    	getPIDController().setAbsoluteTolerance(1.00);
+    	super("Drive", 2.0, 0.0, 0.0);
+    	//getPIDController().setOutputRange(-0.8,0.8);
+    	//getPIDController().setAbsoluteTolerance(1.00);
     	getPIDController().disable();
     }
 	
@@ -33,15 +33,8 @@ public class Drivetrain extends PIDSubsystem {
 	}
 	
 	protected void usePIDOutput(double output) {
-		RobotMap.leftDrive.pidWrite(output*-1);
-		if (getPIDController().getSetpoint() < 0) {
-			RobotMap.rightDrive.set(0.6);
-		}
-		else if (getPIDController().getSetpoint() == 0){
-			RobotMap.rightDrive.set(-0.9);
-		}
-		else {
-			RobotMap.rightDrive.set(-0.6);
+		if (getPIDController().isEnable()) {
+			Robot.drive.arcadeDrive(-0.9, output*-1);
 		}
 	}
 }

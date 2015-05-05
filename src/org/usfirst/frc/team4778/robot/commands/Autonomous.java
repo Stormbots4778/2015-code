@@ -33,17 +33,20 @@ public class Autonomous extends CommandGroup {
     	requires(Robot.drivetrain);
     	
     	RobotMap.gyro.reset();
-    	RobotMap.leftEncoder.reset();
-    	RobotMap.rightEncoder.reset();
+    	RobotMap.leftEncoderPrimary.reset();
+    	RobotMap.rightEncoderPrimary.reset();
     	
     	for (int i=0; i<2; i++) {
     		addSequential(new AutomaticGripUp());
     		Timer.delay(0.15);
-    		addParallel(new PIDUpLift()); //Bring lifts up
+    		addSequential(new PIDUpLift()); //Bring lifts up
     		Timer.delay(0.2);
     		addSequential(new TurnToAngle(-20)); //Knock can out of the way
+    		Timer.delay(0.1);
     		addSequential(new TurnToAngle(0)); //Return to straight path
+    		Timer.delay(0.2);
     		addSequential(new DriveForwardToButton()); //Drive forward to next tote
+    		Timer.delay(0.2);
     		addSequential(new PIDDownLift()); //Bring lifts down for next tote
     	}
     		addSequential(new PIDUpLift()); //Pick up the stack of 3 totes

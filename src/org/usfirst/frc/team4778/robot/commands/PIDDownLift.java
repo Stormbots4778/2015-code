@@ -32,7 +32,7 @@ public class PIDDownLift extends Command {
     		double setpoint = ((24.4495)/((Math.pow(6.2743,currenttime)+0.251242)))-3.58679;
     		Robot.leftLift.getPIDController().setSetpoint(setpoint);
     		Robot.rightLift.getPIDController().setSetpoint(setpoint);
-    		if (i == 13) {
+    		if (i == 11) {
     			RobotMap.leftGripIn.set(true);
     			RobotMap.leftGripOut.set(false);
     			RobotMap.rightGripIn.set(true);

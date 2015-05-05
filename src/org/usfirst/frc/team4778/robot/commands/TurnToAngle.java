@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class TurnToAngle extends Command {
 	
 	int angle;
+	boolean finished = false;
 
     public TurnToAngle(int desiredAngle) {
         // Use requires() here to declare subsystem dependencies
@@ -33,6 +34,7 @@ public class TurnToAngle extends Command {
     	//	Robot.drivetrain.getPIDController().setAbsoluteTolerance(1.00);
     	//}
     	//Robot.drivetrain.getPIDController().enable();
+    	finished = false;
     	if ((angle-RobotMap.gyro.getAngle()) < 0) {
     		while ((angle-RobotMap.gyro.getAngle()) < 0) {
     			Robot.drive.tankDrive(-1.00, 0.9);
@@ -44,11 +46,12 @@ public class TurnToAngle extends Command {
     		}
     	}
     	Robot.drive.tankDrive(0.00, 0.00);
+    	finished = true;
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Robot.drivetrain.getPIDController().onTarget();
+        return finished;
     }
 
     // Called once after isFinished returns true
