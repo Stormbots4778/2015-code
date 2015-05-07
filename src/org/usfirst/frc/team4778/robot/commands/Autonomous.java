@@ -56,7 +56,7 @@ public class Autonomous extends CommandGroup {
     		RobotMap.leftGripOut.set(true);
     		Timer.delay(0.2);
     		
-    		addSequential(new PIDUpLift()); //Pick up the stack of 3 totes
+    		addSequential(new LiftScore()); //Pick up the stack of 3 totes
     		Timer.delay(0.2);
     		addSequential(new BackUp()); //Back away from last container
     		addSequential(new TurnToAngle(-70)); //Turn in preparation for scoring

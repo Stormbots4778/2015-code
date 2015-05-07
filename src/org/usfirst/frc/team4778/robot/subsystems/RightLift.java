@@ -20,7 +20,7 @@ public class RightLift extends PIDSubsystem {
 	Encoder rightEncoder = RobotMap.rightEncoderPrimary;
 	
 	public RightLift() {
-		super ("Right Lift", 0.75,0.0,0.0);
+		super ("Right Lift", 0.75, 0.0, 0.005);
 		getPIDController().setOutputRange(-1, 1);
 	    getPIDController().setAbsoluteTolerance(0.05);
 		getPIDController().setSetpoint(0.16);

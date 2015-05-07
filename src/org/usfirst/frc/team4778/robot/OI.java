@@ -1,7 +1,7 @@
 package org.usfirst.frc.team4778.robot;
 
 
-import org.usfirst.frc.team4778.robot.commands.DriveForwardToButton;
+import org.usfirst.frc.team4778.robot.commands.LiftScore;
 import org.usfirst.frc.team4778.robot.commands.ParallelDownLift;
 import org.usfirst.frc.team4778.robot.commands.ParallelUpLift;
 import org.usfirst.frc.team4778.robot.commands.ResetEncoder;
@@ -55,7 +55,7 @@ public class OI {
 	Button leftTrigger = new JoystickButton(leftJoystick, 1);
 	Button button3l = new JoystickButton(leftJoystick, 3);
 	Button button2l = new JoystickButton(leftJoystick, 2);
-	//Button button4r = new JoystickButton(rightJoystick, 4);
+	Button button4r = new JoystickButton(rightJoystick, 4);
 	public OI() {
 		rightTrigger.whenPressed(new ToggleGrips());
 		button3r.whenPressed(new ParallelUpLift());
@@ -64,7 +64,7 @@ public class OI {
 		leftTrigger.whenPressed(new ToggleKicker());
 		button3l.whenPressed(new ParallelUpLift());
 		button2l.whenPressed(new ParallelDownLift());
-		//button4r.whenPressed(new DriveForwardToButton());
+		button4r.whenPressed(new LiftScore());
 	}
 	
 

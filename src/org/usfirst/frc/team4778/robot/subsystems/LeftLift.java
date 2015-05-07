@@ -17,7 +17,7 @@ public class LeftLift extends PIDSubsystem {
 	Encoder leftEncoder = RobotMap.leftEncoderPrimary;
 	
 	public LeftLift() {
-		super ("Left Lift", 0.75,0.0,0.0);
+		super ("Left Lift", 0.75, 0.0, 0.005);
 		getPIDController().setOutputRange(-1, 1);
 	    getPIDController().setAbsoluteTolerance(0.05);
 		getPIDController().setSetpoint(0.16);
