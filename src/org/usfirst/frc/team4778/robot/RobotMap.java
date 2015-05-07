@@ -33,6 +33,7 @@ public class RobotMap {
 	public static Encoder rightEncoderPrimary = new Encoder(2,3,false,Encoder.EncodingType.k4X);
 	public static Encoder leftEncoderBackup = new Encoder(4,5, true, Encoder.EncodingType.k4X);
 	public static Encoder rightEncoderBackup = new Encoder(6,7, false, Encoder.EncodingType.k4X);
+	//public static Encoder rightDriveEncoder = new Encoder(8,9, false, Encoder.EncodingType.k4X);
 	
 	public static Solenoid leftGripOut = new Solenoid(0);
 	public static Solenoid leftGripIn = new Solenoid(1);

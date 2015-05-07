@@ -37,7 +37,7 @@ public class TurnToAngle extends Command {
     	finished = false;
     	if ((angle-RobotMap.gyro.getAngle()) < 0) {
     		while ((angle-RobotMap.gyro.getAngle()) < 0) {
-    			Robot.drive.tankDrive(-1.00, 0.9);
+    			Robot.drive.tankDrive(-1.00, 0.8);
     		}
     	}
     	else if ((angle-RobotMap.gyro.getAngle()) > 0) {

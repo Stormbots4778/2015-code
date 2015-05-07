@@ -27,12 +27,13 @@ public class DriveForwardToButton extends Command {
     protected void execute() {
     	finished = false;
     	double i=0;
-    	while (RobotMap.toteStop.get() == true || i > 60) {
+    	while (RobotMap.toteStop.get() == true && i < 3) {
     		Robot.drivetrain.getPIDController().setSetpoint(2.00);
     		Robot.drivetrain.enable();
     		Timer.delay(0.05);
     		i=i+0.05;
     	}
+    	Robot.drivetrain.getPIDController().disable();
     	Robot.drive.arcadeDrive(0.0, 0.0);
     	
     	finished = true;
@@ -45,7 +46,7 @@ public class DriveForwardToButton extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.drivetrain.getPIDController().disable();
+    	
     }
 
     // Called when another command which requires one or more of the same
