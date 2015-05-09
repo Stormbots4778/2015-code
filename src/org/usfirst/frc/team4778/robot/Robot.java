@@ -128,7 +128,7 @@ public class Robot extends IterativeRobot {
         //drive.tankDrive(oi.leftJoystick, oi.rightJoystick);
         
         if ((moving && RobotMap.leftEncoderPrimary.getStopped())) {
-        	leftEncoder = RobotMap.leftEncoderBackup;
+        	//leftEncoder = RobotMap.leftEncoderBackup;
         }
         if ((moving && RobotMap.rightEncoderPrimary.getStopped())) {
         	rightEncoder = RobotMap.rightEncoderBackup;
@@ -136,6 +136,11 @@ public class Robot extends IterativeRobot {
         
         SmartDashboard.putNumber("Left Encoder", RobotMap.leftEncoderPrimary.getDistance());
         SmartDashboard.putNumber("Right Encoder", RobotMap.rightEncoderPrimary.getDistance());
+        SmartDashboard.putNumber("Gyro Rate", RobotMap.gyro.getRate());
+        
+        if (RobotMap.leftZeroSwitch.get() == false) {
+        	RobotMap.leftEncoderPrimary.reset();
+        }
     }
     
     /**

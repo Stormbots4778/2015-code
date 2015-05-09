@@ -3,6 +3,7 @@ package org.usfirst.frc.team4778.robot.commands;
 import org.usfirst.frc.team4778.robot.Robot;
 import org.usfirst.frc.team4778.robot.RobotMap;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -45,8 +46,10 @@ public class DriveForwardToButton extends Command {
     	
     	RobotMap.rightDriveEncoder.reset();
     	
-    	while (RobotMap.rightDriveEncoder.getDistance() > -68.00) {
-    		Robot.drivetrain.getPIDController().setSetpoint(0.00);
+    	Timer.delay(0.1);
+    	
+    	while (RobotMap.rightDriveEncoder.getDistance() > -65.50) {
+    		Robot.drivetrain.getPIDController().setSetpoint(-0.25);
     		Robot.drivetrain.getPIDController().enable();
     		SmartDashboard.putNumber("Drive Encoder", RobotMap.rightDriveEncoder.getDistance());
     	}

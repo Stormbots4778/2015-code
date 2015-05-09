@@ -31,7 +31,7 @@ public class ForwardToScore extends Command {
     	//}
     	
     	RobotMap.rightDriveEncoder.reset();
-    	while (RobotMap.rightDriveEncoder.getDistance() > -120) {
+    	while (RobotMap.rightDriveEncoder.getDistance() > -80) {
     		Robot.drive.arcadeDrive(-0.9, 0);
     	}
     	Robot.drive.arcadeDrive(0, 0);

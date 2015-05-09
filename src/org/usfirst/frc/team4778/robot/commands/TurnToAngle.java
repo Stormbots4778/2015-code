@@ -4,7 +4,6 @@ import org.usfirst.frc.team4778.robot.Robot;
 import org.usfirst.frc.team4778.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.PIDController;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -16,6 +15,7 @@ public class TurnToAngle extends Command {
 	boolean finished = false;
 	boolean pid;
 	PIDController turnPIDController = new PIDController(0.25, 0.0, 0.0, RobotMap.rightDriveEncoder, RobotMap.rightDrive);
+	//PIDController angularRatePIDController = new PIDController(0.25, 0.0, 0.0, RobotMap.gyro, RobotMap.leftDrive);
 
     public TurnToAngle(int desiredAngle, boolean pidEnabled) {
         // Use requires() here to declare subsystem dependencies
@@ -72,11 +72,13 @@ public class TurnToAngle extends Command {
     	}
     	else if ((angle-RobotMap.gyro.getAngle()) > 0) {
     		while ((angle-RobotMap.gyro.getAngle()) > 0) {
-    			RobotMap.leftDrive.set(-0.75);
+    			double currentAngle = RobotMap.gyro.getAngle();
+    			double power = 1-Math.pow(0.98471, currentAngle);
+    			RobotMap.leftDrive.set(power);
     			turnPIDController.enable();
     		}
-    		RobotMap.leftDrive.set(0.90);
-    		Timer.delay(0.15);
+    		//RobotMap.leftDrive.set(0.90);
+    		//Timer.delay(0.15);
     		RobotMap.leftDrive.set(0.00);
     	}
     	turnPIDController.disable();

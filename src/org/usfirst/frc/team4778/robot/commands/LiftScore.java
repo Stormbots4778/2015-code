@@ -1,8 +1,8 @@
 package org.usfirst.frc.team4778.robot.commands;
 
 import org.usfirst.frc.team4778.robot.Robot;
-import org.usfirst.frc.team4778.robot.RobotMap;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -32,6 +32,9 @@ public class LiftScore extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	finished = false;
+    	if (grips == true) {
+    		Timer.delay(0.2);
+    	}
     		Robot.leftLift.getPIDController().setSetpoint(3.00);
     		Robot.rightLift.getPIDController().setSetpoint(3.00);
     	finished = true;

@@ -31,6 +31,8 @@ public class BackUp extends Command {
     	//	Timer.delay(0.05);
     	//}
     	
+    	Timer.delay(0.15);
+    	
     	RobotMap.rightDriveEncoder.reset();
     	while (RobotMap.rightDriveEncoder.getDistance() < 18) {
     		Robot.drive.arcadeDrive(0.75, 0);

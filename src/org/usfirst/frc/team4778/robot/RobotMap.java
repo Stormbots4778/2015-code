@@ -31,7 +31,7 @@ public class RobotMap {
 	
 	public static Encoder leftEncoderPrimary = new Encoder(0,1,false,Encoder.EncodingType.k4X);
 	public static Encoder rightEncoderPrimary = new Encoder(2,3,true,Encoder.EncodingType.k4X);
-	public static Encoder leftEncoderBackup = new Encoder(4,5, true, Encoder.EncodingType.k4X);
+	//public static Encoder leftEncoderBackup = new Encoder(4,5, true, Encoder.EncodingType.k4X);
 	public static Encoder rightEncoderBackup = new Encoder(6,7, false, Encoder.EncodingType.k4X);
 	public static Encoder rightDriveEncoder = new Encoder(8,9, false, Encoder.EncodingType.k4X);
 	
@@ -44,6 +44,7 @@ public class RobotMap {
 	public static Relay kickerIn = new Relay(1);
 	
 	//public static DigitalInput toteStop = new DigitalInput(9);
+	public static DigitalInput leftZeroSwitch = new DigitalInput(4);
 	
 	public static Gyro gyro = new Gyro(0);
 	

@@ -1,6 +1,7 @@
 package org.usfirst.frc.team4778.robot;
 
 
+import org.usfirst.frc.team4778.robot.commands.HomeLeftLift;
 import org.usfirst.frc.team4778.robot.commands.LiftScore;
 import org.usfirst.frc.team4778.robot.commands.LiftZero;
 import org.usfirst.frc.team4778.robot.commands.ParallelDownLift;
@@ -64,8 +65,7 @@ public class OI {
 		button2r.whenPressed(new ParallelDownLift());
 		button4l.whenPressed(new ResetEncoder());
 		leftTrigger.whenPressed(new ToggleKicker());
-		button3l.whenPressed(new ParallelUpLift());
-		button2l.whenPressed(new ParallelDownLift());
+		button2l.whenPressed(new HomeLeftLift());
 		button4r.whenPressed(new LiftScore());
 		button5r.whenPressed(new LiftZero());
 	}
