@@ -1,6 +1,7 @@
 package org.usfirst.frc.team4778.robot.commands;
 
 import org.usfirst.frc.team4778.robot.Robot;
+import org.usfirst.frc.team4778.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
@@ -25,9 +26,14 @@ public class BackUp extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	finished = false;
-    	for (int i=0; i<10; i++) {
-    		Robot.drive.arcadeDrive(-0.75, 0);
-    		Timer.delay(0.05);
+    	//for (int i=0; i<10; i++) {
+    	//	Robot.drive.arcadeDrive(0.75, 0);
+    	//	Timer.delay(0.05);
+    	//}
+    	
+    	RobotMap.rightDriveEncoder.reset();
+    	while (RobotMap.rightDriveEncoder.getDistance() < 18) {
+    		Robot.drive.arcadeDrive(0.75, 0);
     	}
     	Robot.drive.arcadeDrive(0, 0);
     	finished = true;

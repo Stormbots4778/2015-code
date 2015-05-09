@@ -26,6 +26,7 @@ public class PIDUpLift extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	finished = false;
+    	Timer.delay(0.15); //TODO Remove
     	for (int i=0; i<35; i++) {
     		double currenttime = i*0.05;
     		double setpoint = 16.2619-((85.7281)/(Math.pow(24.289,currenttime)+4.32489));

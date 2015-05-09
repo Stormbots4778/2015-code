@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -77,10 +78,13 @@ public class Robot extends IterativeRobot {
         
 		RobotMap.leftEncoderPrimary.setDistancePerPulse(0.01309); //Encodon conversion ratio. Should actually be 0.02086214
 		RobotMap.rightEncoderPrimary.setDistancePerPulse(0.01309);
+		RobotMap.rightDriveEncoder.setDistancePerPulse(0.07363); //Inches per pulse
+		RobotMap.rightDriveEncoder.setReverseDirection(true);
 		RobotMap.leftEncoderPrimary.setReverseDirection(true);
 		RobotMap.leftEncoderPrimary.setSamplesToAverage(4);
 		
 		autonomousCommand = new Autonomous();
+		
         
     }
 	
@@ -129,6 +133,9 @@ public class Robot extends IterativeRobot {
         if ((moving && RobotMap.rightEncoderPrimary.getStopped())) {
         	rightEncoder = RobotMap.rightEncoderBackup;
         }
+        
+        SmartDashboard.putNumber("Left Encoder", RobotMap.leftEncoderPrimary.getDistance());
+        SmartDashboard.putNumber("Right Encoder", RobotMap.rightEncoderPrimary.getDistance());
     }
     
     /**

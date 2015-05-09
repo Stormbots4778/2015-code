@@ -15,6 +15,7 @@ public class Drive extends Command {
         // eg. requires(chassis);
     	
     	requires(Robot.drivetrain);
+    	//setInterruptible(false);
     }
 
     // Called just before this Command runs the first time

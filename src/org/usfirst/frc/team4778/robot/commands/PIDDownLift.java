@@ -11,13 +11,21 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class PIDDownLift extends Command {
 	boolean finished;
+	double wait;
 
     public PIDDownLift() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.leftLift);
     	requires(Robot.rightLift);
+    	wait = 0;
     	
+    }
+    
+    public PIDDownLift(double waittime) {
+    	requires(Robot.leftLift);
+    	requires(Robot.rightLift);
+    	wait = waittime;
     }
 
     // Called just before this Command runs the first time
@@ -27,11 +35,12 @@ public class PIDDownLift extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	finished = false;
-    	for (int i=0; i<20; i++) {
+    	Timer.delay(wait);
+    	for (int i=0; i<25; i++) {
     		double currenttime = i*0.05;
-    		double setpoint = ((24.4495)/((Math.pow(6.2743,currenttime)+0.251242)))-3.58679;
+    		double setpoint = ((45.8945)/((Math.pow(63.883,currenttime)+1.84905)))-0.1016;
+    		Robot.rightLift.getPIDController().setSetpoint(setpoint); 
     		Robot.leftLift.getPIDController().setSetpoint(setpoint);
-    		Robot.rightLift.getPIDController().setSetpoint(setpoint);
     		if (i == 11) {
     			RobotMap.leftGripIn.set(true);
     			RobotMap.leftGripOut.set(false);

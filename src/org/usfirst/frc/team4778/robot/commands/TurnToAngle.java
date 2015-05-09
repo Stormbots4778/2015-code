@@ -4,6 +4,7 @@ import org.usfirst.frc.team4778.robot.Robot;
 import org.usfirst.frc.team4778.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.PIDController;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -13,14 +14,17 @@ public class TurnToAngle extends Command {
 	
 	int angle;
 	boolean finished = false;
-	//PIDController turnPIDController = new PIDController(0.5, 0.0, 0.0, RobotMap.rightDriveEncoder, RobotMap.rightDrive);
+	boolean pid;
+	PIDController turnPIDController = new PIDController(0.25, 0.0, 0.0, RobotMap.rightDriveEncoder, RobotMap.rightDrive);
 
-    public TurnToAngle(int desiredAngle) {
+    public TurnToAngle(int desiredAngle, boolean pidEnabled) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.drivetrain);
     	angle = desiredAngle;
-    	//turnPIDController.disable();
+    	turnPIDController.setOutputRange(-0.9, 0.9);
+    	turnPIDController.disable();
+    	pid = pidEnabled;
     }
 
     // Called just before this Command runs the first time
@@ -53,21 +57,29 @@ public class TurnToAngle extends Command {
     	//}
     	//Robot.drive.tankDrive(0.00, 0.00);
     	
-    	//turnPIDController.setSetpoint(0.00);
-    	//RobotMap.rightDriveEncoder.reset();
-    	//if ((angle-RobotMap.gyro.getAngle()) < 0) {
-    	//	while ((angle-RobotMap.gyro.getAngle()) < 0) {
-    	//		RobotMap.leftDrive.set(-1.00);
-    	//		turnPIDController.enable();
-    	//	}
-    	//}
-    	//else if ((angle-RobotMap.gyro.getAngle()) > 0) {
-    	//	while ((angle-RobotMap.gyro.getAngle()) > 0) {
-    	//		RobotMap.leftDrive.set(1.00);
-    	//		turnPIDController.enable();
-    	//	}
-    	//}
-    	//turnPIDController.disable();
+    	turnPIDController.setSetpoint(0.00);
+    	RobotMap.rightDriveEncoder.reset();
+    	if ((angle-RobotMap.gyro.getAngle()) < 0) {
+    		while ((angle-RobotMap.gyro.getAngle()) < 0) {
+    			RobotMap.leftDrive.set(1.00);
+    			if (pid == true) {
+    				turnPIDController.enable();
+    			}
+    			if (pid == false) {
+    				RobotMap.rightDrive.set(1.00);
+    			}
+    		}
+    	}
+    	else if ((angle-RobotMap.gyro.getAngle()) > 0) {
+    		while ((angle-RobotMap.gyro.getAngle()) > 0) {
+    			RobotMap.leftDrive.set(-0.75);
+    			turnPIDController.enable();
+    		}
+    		RobotMap.leftDrive.set(0.90);
+    		Timer.delay(0.15);
+    		RobotMap.leftDrive.set(0.00);
+    	}
+    	turnPIDController.disable();
     	Robot.drive.tankDrive(0.00, 0.00);
     	
     	
@@ -82,11 +94,12 @@ public class TurnToAngle extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	Robot.drivetrain.getPIDController().disable();
-    	//turnPIDController.disable();
+    	turnPIDController.disable();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	end();
     }
 }

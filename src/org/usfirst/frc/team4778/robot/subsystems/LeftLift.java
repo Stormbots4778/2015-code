@@ -1,7 +1,6 @@
 package org.usfirst.frc.team4778.robot.subsystems;
 
 import org.usfirst.frc.team4778.robot.RobotMap;
-import org.usfirst.frc.team4778.robot.commands.FollowRight;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Timer;
@@ -38,7 +37,7 @@ public class LeftLift extends PIDSubsystem {
     }
     
     protected void usePIDOutput(double output) {
-    	liftMotor.pidWrite(output*-1);
+    	liftMotor.pidWrite(output); //TODO Change back to *-1
     }
     
     public void goUp(long timer) {

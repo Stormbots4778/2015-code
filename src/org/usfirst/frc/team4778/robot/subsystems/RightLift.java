@@ -1,7 +1,6 @@
 package org.usfirst.frc.team4778.robot.subsystems;
 
 import org.usfirst.frc.team4778.robot.RobotMap;
-import org.usfirst.frc.team4778.robot.commands.ParallelUpLift;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Timer;
@@ -40,7 +39,7 @@ public class RightLift extends PIDSubsystem {
     }
     
     protected void usePIDOutput(double output) {
-    	rightLiftMotor.pidWrite(output);
+    	rightLiftMotor.pidWrite(output*-1); //TODO Change back to output
     }
     
     public void goUp(long timer) {

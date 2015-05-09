@@ -34,8 +34,8 @@ public class ParallelUpLift extends CommandGroup {
     	requires(Robot.leftLift);
     	requires(Robot.rightLift);
     	addSequential(new AutomaticGripUp());
-    	Timer.delay(0.25);
-    	timer = System.nanoTime();
+    	//Timer.delay(0.35);
+    	
     	//addParallel(new AutomaticLeftUp(timer));
     	//addSequential(new AutomaticRightUp(timer));
     	addSequential(new PIDUpLift());
