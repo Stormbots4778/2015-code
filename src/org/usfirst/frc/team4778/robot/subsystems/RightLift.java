@@ -39,7 +39,7 @@ public class RightLift extends PIDSubsystem {
     }
     
     protected void usePIDOutput(double output) {
-    	rightLiftMotor.pidWrite(output*-1); //TODO Change back to output
+    	rightLiftMotor.pidWrite(output); //TODO Change back to output, FIXED
     }
     
     public void goUp(long timer) {

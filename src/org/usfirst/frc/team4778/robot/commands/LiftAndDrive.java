@@ -2,18 +2,14 @@ package org.usfirst.frc.team4778.robot.commands;
 
 import org.usfirst.frc.team4778.robot.Robot;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
  */
-public class ParallelUpLift extends CommandGroup {
-	
-	public boolean manual;
-	public static long timer;
+public class LiftAndDrive extends CommandGroup {
     
-    public  ParallelUpLift() {
+    public  LiftAndDrive() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -33,11 +29,9 @@ public class ParallelUpLift extends CommandGroup {
     	
     	requires(Robot.leftLift);
     	requires(Robot.rightLift);
+    	requires(Robot.drivetrain);
+    	addParallel(new Drive());
     	addSequential(new AutomaticGripUp());
-    	//Timer.delay(0.35);
-    	
-    	//addParallel(new AutomaticLeftUp(timer));
-    	//addSequential(new AutomaticRightUp(timer));
-    	addParallel(new PIDUpLift());
+    	addSequential(new PIDUpLift());
     }
 }

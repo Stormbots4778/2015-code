@@ -10,11 +10,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class DriveForwardToButton extends Command {
+public class PIDDriveForward extends Command {
 	
 	boolean finished = false;
 
-    public DriveForwardToButton() {
+    public PIDDriveForward() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.drivetrain);

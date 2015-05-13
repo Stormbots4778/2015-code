@@ -29,8 +29,8 @@ public class RobotMap {
 	public static Victor leftLiftMotor = new Victor(6);
 	public static Victor rightLiftMotor = new Victor(7);
 	
-	public static Encoder leftEncoderPrimary = new Encoder(0,1,false,Encoder.EncodingType.k4X);
-	public static Encoder rightEncoderPrimary = new Encoder(2,3,true,Encoder.EncodingType.k4X);
+	public static Encoder leftEncoderPrimary = new Encoder(0,1,true,Encoder.EncodingType.k4X);
+	public static Encoder rightEncoderPrimary = new Encoder(2,3,false,Encoder.EncodingType.k4X);
 	//public static Encoder leftEncoderBackup = new Encoder(4,5, true, Encoder.EncodingType.k4X);
 	public static Encoder rightEncoderBackup = new Encoder(6,7, false, Encoder.EncodingType.k4X);
 	public static Encoder rightDriveEncoder = new Encoder(8,9, false, Encoder.EncodingType.k4X);

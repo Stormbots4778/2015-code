@@ -62,6 +62,7 @@ public class OI {
 	public OI() {
 		rightTrigger.whenPressed(new ToggleGrips());
 		button3r.whenPressed(new ParallelUpLift());
+		//button3r.whenPressed(new LiftAndDrive());
 		button2r.whenPressed(new ParallelDownLift());
 		button4l.whenPressed(new ResetEncoder());
 		leftTrigger.whenPressed(new ToggleKicker());

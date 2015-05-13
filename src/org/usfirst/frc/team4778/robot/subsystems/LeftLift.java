@@ -17,7 +17,7 @@ public class LeftLift extends PIDSubsystem {
 	
 	public LeftLift() {
 		super ("Left Lift", 0.75, 0.0, 0.005);
-		getPIDController().setOutputRange(-0.94, 0.94);
+		getPIDController().setOutputRange(-1, 1); //TODO Change this back to -1,1 for actual robot
 	    getPIDController().setAbsoluteTolerance(0.05);
 		getPIDController().setSetpoint(0.16);
 		getPIDController().enable();
@@ -37,7 +37,7 @@ public class LeftLift extends PIDSubsystem {
     }
     
     protected void usePIDOutput(double output) {
-    	liftMotor.pidWrite(output); //TODO Change back to *-1
+    	liftMotor.pidWrite(output*-1); //TODO Change back to *-1, FIXED
     }
     
     public void goUp(long timer) {

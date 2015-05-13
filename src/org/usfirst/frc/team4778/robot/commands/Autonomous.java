@@ -48,7 +48,7 @@ public class Autonomous extends CommandGroup {
     		Timer.delay(0.1);
     		addSequential(new TurnToAngle(-1, true)); //Return to straight path
     		Timer.delay(0.2);
-    		addSequential(new DriveForwardToButton()); //Drive forward to next tote
+    		addSequential(new PIDDriveForward()); //Drive forward to next tote
     		Timer.delay(0.2);
     		//addSequential(new PIDDownLift(0.2)); //Bring lifts down for next tote
     		addSequential(new GoToHeight(8.00, 0.1, 0.1)); //TODO Added this
@@ -69,7 +69,7 @@ public class Autonomous extends CommandGroup {
     		addSequential(new GoToHeight(0.16, 0.2, 1.2)); //TODO Added this
     		addSequential(new ToggleGrips());
     	
-    	//addSequential(new DriveForwardToButton());
+    	//addSequential(new PIDDriveForward());
     	
     }
 }
