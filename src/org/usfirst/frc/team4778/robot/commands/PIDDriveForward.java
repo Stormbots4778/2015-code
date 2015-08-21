@@ -42,7 +42,7 @@ public class PIDDriveForward extends Command {
 	// Robot.drive.arcadeDrive(0.0, 0.0);
 	RobotMap.rightDriveEncoder.reset();
 	Timer.delay(0.1);
-	while (RobotMap.rightDriveEncoder.getDistance() > -65.50) {
+	while (RobotMap.rightDriveEncoder.getDistance() > -61.50) {
 	    Robot.drivetrain.getPIDController().setSetpoint(-0.25);
 	    Robot.drivetrain.getPIDController().enable();
 	    SmartDashboard.putNumber("Drive Encoder", RobotMap.rightDriveEncoder.getDistance());
@@ -67,5 +67,6 @@ public class PIDDriveForward extends Command {
     // subsystems is scheduled to run
     @Override
     protected void interrupted() {
+	end();
     }
 }

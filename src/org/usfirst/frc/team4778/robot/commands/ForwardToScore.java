@@ -29,8 +29,8 @@ public class ForwardToScore extends Command {
 	// Robot.drive.arcadeDrive(output, 0);
 	// }
 	RobotMap.rightDriveEncoder.reset();
-	while (RobotMap.rightDriveEncoder.getDistance() > -80)
-	    Robot.drive.arcadeDrive(-0.9, 0);
+	while (RobotMap.rightDriveEncoder.getDistance() > -66)
+	    Robot.drive.arcadeDrive(-0.95, 0);
 	Robot.drive.arcadeDrive(0, 0);
 	finished = true;
     }
@@ -50,5 +50,6 @@ public class ForwardToScore extends Command {
     // subsystems is scheduled to run
     @Override
     protected void interrupted() {
+	end();
     }
 }

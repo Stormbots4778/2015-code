@@ -1,5 +1,6 @@
 package org.usfirst.frc.team4778.robot.commands;
 
+import org.usfirst.frc.team4778.robot.OI;
 import org.usfirst.frc.team4778.robot.Robot;
 import org.usfirst.frc.team4778.robot.RobotMap;
 
@@ -35,17 +36,18 @@ public class PIDDownLift extends Command {
     protected void execute() {
 	finished = false;
 	Timer.delay(wait);
-	for (int i = 0; i < 25; i++) {
+	for (int i = 0; i < 20; i++) {
 	    double currenttime = i * 0.05;
-	    double setpoint = 45.8945 / (Math.pow(63.883, currenttime) + 1.84905) - 0.1016;
+	    double setpoint = 37.88 / (Math.pow(25.84, currenttime) + 1.20) - 1.25;
 	    Robot.rightLift.getPIDController().setSetpoint(setpoint);
 	    Robot.leftLift.getPIDController().setSetpoint(setpoint);
-	    if (i == 11) {
+	    if (i == 10) {
 		RobotMap.leftGripIn.set(true);
 		RobotMap.leftGripOut.set(false);
 		RobotMap.rightGripIn.set(true);
 		RobotMap.rightGripOut.set(false);
 	    }
+	    Robot.drive.tankDrive(OI.leftJoystick, OI.rightJoystick);
 	    Timer.delay(0.05);
 	}
 	finished = true;

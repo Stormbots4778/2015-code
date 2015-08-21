@@ -100,6 +100,7 @@ public class TurnToAngle extends Command {
     // subsystems is scheduled to run
     @Override
     protected void interrupted() {
+	Robot.drive.arcadeDrive(0, 0);
 	end();
     }
 }

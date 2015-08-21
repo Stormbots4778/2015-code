@@ -38,6 +38,7 @@ public class RightLift extends PIDSubsystem {
     @Override
     protected void usePIDOutput(double output) {
 	rightLiftMotor.pidWrite(output); // TODO Change back to output, FIXED
+	// SmartDashboard.putNumber("Right Power", output);
     }
 
     public void goUp() {

@@ -1,6 +1,5 @@
 package org.usfirst.frc.team4778.robot;
 
-import org.usfirst.frc.team4778.robot.commands.Autonomous;
 import org.usfirst.frc.team4778.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team4778.robot.subsystems.Kicker;
 import org.usfirst.frc.team4778.robot.subsystems.LeftLift;
@@ -15,6 +14,7 @@ import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -38,7 +38,8 @@ public class Robot extends IterativeRobot {
     public static Encoder rightEncoder = RobotMap.rightEncoderPrimary;
     public static boolean moving = false;
     public static OI oi;
-    Command autonomousCommand;
+    public static Command autonomousCommand;
+    public static SendableChooser chooser;
 
     /**
      * This function is run when the robot is first started up and should be used for any initialization code.
@@ -46,8 +47,10 @@ public class Robot extends IterativeRobot {
     @Override
     public void robotInit() {
 	oi = new OI();
-	// instantiate the command used for the autonomous period
-	// autonomousCommand = new ExampleCommand();
+	chooser = new SendableChooser();
+	chooser.addObject("yes", "yes");
+	chooser.addObject("no", "no");
+	SmartDashboard.putData("Run autonomous?", chooser);
 	leftGripIn.set(true);
 	leftGripOut.set(false);
 	rightGripIn.set(true);
@@ -67,7 +70,7 @@ public class Robot extends IterativeRobot {
 	RobotMap.rightDriveEncoder.setReverseDirection(true);
 	RobotMap.leftEncoderPrimary.setReverseDirection(true);
 	RobotMap.leftEncoderPrimary.setSamplesToAverage(4);
-	autonomousCommand = new Autonomous();
+	// autonomousCommand = new Autonomous();
     }
 
     @Override

@@ -1,6 +1,6 @@
 package org.usfirst.frc.team4778.robot;
 
-import org.usfirst.frc.team4778.robot.commands.HomeLeftLift;
+import org.usfirst.frc.team4778.robot.commands.IncrementalLift;
 import org.usfirst.frc.team4778.robot.commands.LiftScore;
 import org.usfirst.frc.team4778.robot.commands.LiftZero;
 import org.usfirst.frc.team4778.robot.commands.ParallelDownLift;
@@ -50,16 +50,19 @@ public class OI {
     Button button2l = new JoystickButton(leftJoystick, 2);
     Button button4r = new JoystickButton(rightJoystick, 4);
     Button button5r = new JoystickButton(rightJoystick, 5);
+    Button button5l = new JoystickButton(leftJoystick, 5);
 
     public OI() {
 	rightTrigger.whenPressed(new ToggleGrips());
 	button3r.whenPressed(new ParallelUpLift());
 	// button3r.whenPressed(new LiftAndDrive());
 	button2r.whenPressed(new ParallelDownLift());
-	button4l.whenPressed(new ResetEncoder());
+	button3l.whenPressed(new ResetEncoder());
 	leftTrigger.whenPressed(new ToggleKicker());
-	button2l.whenPressed(new HomeLeftLift());
+	// button2l.whenPressed(new HomeLeftLift());
 	button4r.whenPressed(new LiftScore());
 	button5r.whenPressed(new LiftZero());
+	button4l.whileHeld(new IncrementalLift(false));
+	button5l.whileHeld(new IncrementalLift(true));
     }
 }
