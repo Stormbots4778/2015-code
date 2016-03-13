@@ -1,3 +1,3 @@
 # 2015 FRC Robot Code
 
-The Stormbots' (team #4778) 2015 season FRC robot code.
+This is the code repository for the Stormbots' (team 4778) robot competing in the 2015 FIRST Recycle Rush challange.
